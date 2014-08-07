@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="ec2" transaction-type="RESOURCE_LOCAL">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<!-- basic entity -->
+		<class>com.jiangyifen.ec2.entity.Log</class>
+
+
+		<properties>
+			<!-- 连接配置 -->
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/asterisk" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="123456" />
+
+			<!-- <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" 
+				/> <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/asterisk?useUnicode=true&amp;characterEncoding=UTF-8"/> 
+				<property name="javax.persistence.jdbc.user" value="root" /> <property name="javax.persistence.jdbc.password" 
+				value="root" /> -->
+
+			<!-- 性能配置 -->
+			<!-- Avoids flush being triggered before every query execution. -->
+			<property name="eclipselink.persistence-context.flush-mode"
+				value="COMMIT" />
+
+			<!-- Optimize database writes to use batching. -->
+			<property name="eclipselink.jdbc.batch-writing" value="JDBC" />
+
+			<!-- Configure connection pool. -->
+			<property name="eclipselink.jdbc.connections.initial" value="1" />
+			<property name="eclipselink.jdbc.connections.min" value="64" />
+			<property name="eclipselink.jdbc.connections.max" value="64" />
+
+			<!-- Timeout for connection. -->
+			<property name="eclipselink.jdbc.timeout" value="10" />
+
+			<!-- Configure cache size. -->
+			<property name="eclipselink.cache.size.default" value="1000" />
+			<property name="eclipselink.cache.shared.default" value="true" />
+
+
+			<!-- EclipseLink should create the database schema automatically -->
+			<!-- <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc" 
+				/> -->
+			<property name="eclipselink.target-database"
+				value="org.eclipse.persistence.platform.database.PostgreSQLPlatform" />
+
+
+			<!-- 创建表的设置 -->
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.weaving" value="false" />
+
+			<!-- 消息配置 Logging -->
+			<!-- Configure simple SQL logging for demonstration. -->
+			<property name="eclipselink.logging.level" value="OFF" />
+			<!-- <property name="eclipselink.logging.level" value="SEVERE"/> -->
+			<!-- <property name="eclipselink.logging.level" value="FINE" /> -->
+			<property name="eclipselink.logging.thread" value="false" />
+			<property name="eclipselink.logging.session" value="false" />
+			<property name="eclipselink.logging.exceptions" value="false" />
+			<property name="eclipselink.logging.timestamp" value="false" />
+		</properties>
+	</persistence-unit>
+
+</persistence>
